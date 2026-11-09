@@ -4,25 +4,20 @@ services:
     container_name: valeronne-atelie
     restart: unless-stopped
     ports:
-      - "${PORT:-3000}:3000"
+      - "${PORT:-8092}:3000"
     environment:
       - PORT=3000
-      - PUBLIC_URL=${PUBLIC_URL:-https://valeronne.loomadev.com}
-      - EVOLUTION_API_URL=${EVOLUTION_API_URL:-https://evolution.loomadev.com}
-      - EVOLUTION_API_KEY=${EVOLUTION_API_KEY:-}
+      - PUBLIC_URL=${PUBLIC_URL:-https://valeronne.loomadev.com.br}
+      - EVOLUTION_API_URL=${EVOLUTION_API_URL:-https://api-wa.loomadev.com.br}
+      - EVOLUTION_API_KEY=${EVOLUTION_API_KEY:-64BC4B01B73E4751A2E3029F6423ED88}
       - EVOLUTION_INSTANCE=${EVOLUTION_INSTANCE:-valeronne}
       - SALON_WHATSAPP=${SALON_WHATSAPP:-5511998427100}
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:-}
       - CLOUDFLARE_ZONE_ID=${CLOUDFLARE_ZONE_ID:-}
       - CF_SUBDOMAIN=${CF_SUBDOMAIN:-valeronne}
-      - CF_ROOT_DOMAIN=${CF_ROOT_DOMAIN:-loomadev.com}
-      - CF_RECORD_TYPE=${CF_RECORD_TYPE:-A}
-      - CF_TARGET_CONTENT=${CF_TARGET_CONTENT:-}
+      - CF_ROOT_DOMAIN=${CF_ROOT_DOMAIN:-loomadev.com.br}
+      - CF_RECORD_TYPE=${CF_RECORD_TYPE:-CNAME}
+      - CF_TARGET_CONTENT=${CF_TARGET_CONTENT:-8a55b794-ed12-4a3f-93f0-c7df6dc652ed.cfargotunnel.com}
     volumes:
       - ./data:/app/data
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.valeronne.rule=Host(`valeronne.loomadev.com`) || Host(`valeronne.loomadev.com.br`) || Host(`valeronne.loomadev.dev`)"
-      - "traefik.http.routers.valeronne.entrypoints=websecure"
-      - "traefik.http.routers.valeronne.tls.certresolver=letsencrypt"
-      - "traefik.http.services.valeronne.loadbalancer.server.port=3000"
+

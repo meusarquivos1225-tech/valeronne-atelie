@@ -369,6 +369,51 @@ function buildAutoReplyForMessage({ incomingText, pushName, senderPhone, db }) {
   };
 }
 
+async function createEvolutionInstance(evolutionConfig) {
+  const baseUrl = String(evolutionConfig?.baseUrl || 'https://api-wa.loomadev.com.br').replace(/\/+$/, '');
+  const apiKey = String(evolutionConfig?.apiKey || '').trim();
+  const instanceName = String(evolutionConfig?.instanceName || 'valeronne').trim();
+
+  const endpoint = `${baseUrl}/instance/create`;
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: apiKey
+      },
+      body: JSON.stringify({
+        instanceName,
+        integration: 'WHATSAPP-BAILEYS',
+        qrcode: true
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    return { ok: res.ok, status: res.status, data };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
+}
+
+async function getEvolutionQRCode(evolutionConfig) {
+  const baseUrl = String(evolutionConfig?.baseUrl || 'https://api-wa.loomadev.com.br').replace(/\/+$/, '');
+  const apiKey = String(evolutionConfig?.apiKey || '').trim();
+  const instanceName = encodeURIComponent(String(evolutionConfig?.instanceName || 'valeronne').trim());
+
+  const endpoint = `${baseUrl}/instance/connect/${instanceName}`;
+  try {
+    const res = await fetch(endpoint, {
+      method: 'GET',
+      headers: { apikey: apiKey }
+    });
+    const data = await res.json().catch(() => ({}));
+    const base64 = data?.base64 || data?.qrcode?.base64 || data?.code || null;
+    return { ok: res.ok, status: res.status, base64, data };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
+}
+
 module.exports = {
   normalizePhone,
   formatDateBr,
@@ -376,5 +421,8 @@ module.exports = {
   sendWhatsAppText,
   checkEvolutionConnection,
   registerEvolutionWebhook,
+  createEvolutionInstance,
+  getEvolutionQRCode,
   buildAutoReplyForMessage
 };
+

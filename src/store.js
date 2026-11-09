@@ -229,8 +229,8 @@ const DEFAULT_DATA = {
   ],
   settings: {
     evolution: {
-      baseUrl: process.env.EVOLUTION_API_URL || 'https://evolution.loomadev.com',
-      apiKey: process.env.EVOLUTION_API_KEY || '',
+      baseUrl: process.env.EVOLUTION_API_URL || 'https://api-wa.loomadev.com.br',
+      apiKey: process.env.EVOLUTION_API_KEY || '64BC4B01B73E4751A2E3029F6423ED88',
       instanceName: process.env.EVOLUTION_INSTANCE || 'valeronne',
       salonNotificationPhone: process.env.SALON_WHATSAPP || '5511998427100',
       autoReplyEnabled: true,
@@ -242,12 +242,14 @@ const DEFAULT_DATA = {
     },
     cloudflare: {
       subdomain: process.env.CF_SUBDOMAIN || 'valeronne',
-      rootDomain: process.env.CF_ROOT_DOMAIN || 'loomadev.com',
-      fullHostname: process.env.CF_FULL_HOSTNAME || 'valeronne.loomadev.com',
+      rootDomain: process.env.CF_ROOT_DOMAIN || 'loomadev.com.br',
+      fullHostname: process.env.CF_FULL_HOSTNAME || 'valeronne.loomadev.com.br',
+      tunnelId: process.env.CF_TUNNEL_ID || '8a55b794-ed12-4a3f-93f0-c7df6dc652ed',
+      dockgePort: process.env.DOCKGE_PORT || '8092',
       zoneId: process.env.CLOUDFLARE_ZONE_ID || '',
       apiToken: process.env.CLOUDFLARE_API_TOKEN || '',
-      recordType: process.env.CF_RECORD_TYPE || 'A',
-      targetContent: process.env.CF_TARGET_CONTENT || '',
+      recordType: process.env.CF_RECORD_TYPE || 'CNAME',
+      targetContent: process.env.CF_TARGET_CONTENT || '8a55b794-ed12-4a3f-93f0-c7df6dc652ed.cfargotunnel.com',
       proxied: true,
       lastResult: null
     }

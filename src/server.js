@@ -421,6 +421,19 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
+    // 7b. Criar Instância e Buscar QR Code na Evolution API (Padrão Looma)
+    if (pathname === '/api/evolution/instance/create' && req.method === 'POST') {
+      const db = readDb();
+      const result = await createEvolutionInstance(db.settings.evolution);
+      return sendJson(res, result.ok ? 200 : 400, result);
+    }
+
+    if (pathname === '/api/evolution/instance/qrcode' && req.method === 'GET') {
+      const db = readDb();
+      const result = await getEvolutionQRCode(db.settings.evolution);
+      return sendJson(res, result.ok ? 200 : 400, result);
+    }
+
     // 8. Visão Geral Administrativa (Agendamentos, Logs WhatsApp, Evolution API & Cloudflare)
     if (pathname === '/api/admin/overview' && req.method === 'GET') {
       const db = readDb();
