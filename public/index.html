@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valeronne Beleza e Estética — Ateliê de Alta Beleza & Agendamento Online</title>
+  <meta name="description" content="Valeronne Beleza e Estética: Ateliê sofisticado de Hair Couture, Estética Facial e Corporal, Nail Spa e Dia da Noiva. Agendamento online com confirmação imediata via WhatsApp Evolution API (Looma)." />
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/icon-valeronne.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Top Concierge Bar -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <span>📍 Ateliê Valeronne • Terça a Sábado, 09h às 20h</span>
+        <a href="https://www.instagram.com/valeronnebelezaeestetica?srtk=Y2F5amJldjQwYWxi" target="_blank" rel="noopener" id="topbar-instagram-link">
+          Instagram @valeronnebelezaeestetica ↗
+        </a>
+      </div>
+      <div class="topbar-right">
+        <button type="button" class="status-chip" id="btn-open-looma-status" title="Configurar Evolution API Looma e Subdomínio Cloudflare">
+          <span class="status-dot online" id="evolution-status-dot"></span>
+          <span id="evolution-status-label">Evolution API Looma • Auto-Reply Ativo</span>
+        </button>
+        <button type="button" class="status-chip" id="btn-open-cf-status" title="Subdomínio Cloudflare valeronne.loomadev">
+          <span>🌐 valeronne.loomadev</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Editorial Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="brand-link" id="header-brand-link">
+        <img src="/assets/logos/icon-valeronne.svg" alt="Monograma Valeronne" class="brand-monogram" />
+        <div class="brand-text-wrap">
+          <img src="/assets/logos/name-valeronne.svg" alt="VALERONNE" class="brand-wordmark" />
+          <span class="brand-sub">Beleza e Estética • Studio</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação Principal">
+        <a href="#experiencias" id="nav-experiencias">Experiências</a>
+        <a href="#menu-valores" id="nav-menu">Menu & Valores</a>
+        <a href="#agendamento" id="nav-agendamento">Agendamento</a>
+        <a href="#especialistas" id="nav-especialistas">Especialistas</a>
+        <a href="#automacao-looma" id="nav-automacao">Concierge WhatsApp</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn btn-outline btn-sm" id="btn-open-admin">
+          ⚙️ Looma & Cloudflare
+        </button>
+        <a href="#agendamento" class="btn btn-gold btn-sm" id="btn-header-book">
+          Agendar Horário
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="inicio">
+    <img src="/assets/images/hero-atelier.jpg" alt="Interior do Ateliê Valeronne Beleza e Estética" class="hero-bg" />
+    <div class="hero-overlay"></div>
+
+    <div class="hero-container">
+      <div class="hero-copy">
+        <span class="hero-kicker">VALERONNE BELEZA E ESTÉTICA • ATELIÊ DE ALTA BELEZA</span>
+        <h1>A arte da beleza esculpida com <em>precisão</em>, ciência e alma.</h1>
+        <p class="hero-lead">
+          Um refúgio arquitetônico dedicado à colorimetria personalizada, estética regenerativa e rituais sensoriais. Agende sua experiência online e receba confirmação imediata em seu WhatsApp pelo nosso Concierge Digital.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#agendamento" class="btn btn-gold" id="btn-hero-book">
+            Reservar Minha Experiência
+          </a>
+          <a href="#automacao-looma" class="btn btn-outline-light" id="btn-hero-whatsapp">
+            Testar Resposta Automática WhatsApp
+          </a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <strong>100% Exclusivo</strong>
+            <span>Diagnóstico de visagismo individualizado</span>
+          </div>
+          <div class="metric-item">
+            <strong>Alta Cosmética</strong>
+            <span>Kérastase Première, Dior, Chanel & Exossomos</span>
+          </div>
+          <div class="metric-item">
+            <strong>WhatsApp 24/7</strong>
+            <span>Confirmação e atendimento via Evolution API Looma</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Booking Card with Official SVG Emblem -->
+      <aside class="hero-card" aria-label="Reserva Rápida">
+        <div class="hero-card-logo">
+          <img src="/assets/logos/logo-name-valeronne.svg" alt="Valeronne Beleza e Estética Logo Oficial" />
+          <span>Agendamento Rápido • Confirmação Instantânea</span>
+        </div>
+
+        <form class="quick-book-form" id="quick-book-form">
+          <div>
+            <label for="quick-service-select">Escolha o Ritual Desejado</label>
+            <select id="quick-service-select" required></select>
+          </div>
+          <div>
+            <label for="quick-date-input">Data de Preferência</label>
+            <input type="date" id="quick-date-input" required />
+          </div>
+          <button type="submit" class="btn btn-gold" id="btn-quick-continue" style="width: 100%; margin-top: 0.35rem;">
+            Escolher Horário & Confirmar →
+          </button>
+        </form>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 4 Editorial Pillars Section -->
+  <section class="section" id="experiencias">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">CURADORIA VALERONNE</span>
+        <h2 class="section-title">Quatro pilares de sofisticação e bem-estar</h2>
+        <p class="section-subtitle">
+          Cada protocolo do nosso Ateliê une técnicas internacionais, produtos de grau dermatológico e um ambiente pensado para desacelerar o tempo.
+        </p>
+      </div>
+
+      <div class="pillars-grid" id="pillars-grid">
+        <!-- Renderizado dinamicamente via app.js -->
+      </div>
+
+      <!-- Menu Completo de Experiências & Valores -->
+      <div id="menu-valores" style="padding-top: 2rem;">
+        <div class="section-header">
+          <span class="section-eyebrow">MENU DE EXPERIÊNCIAS & INVESTIMENTO</span>
+          <h2 class="section-title">Selecione seu ritual para agendar</h2>
+        </div>
+
+        <div class="category-tabs" id="category-tabs">
+          <button type="button" class="tab-btn active" data-category="all" id="tab-all">Todos os Rituais</button>
+          <button type="button" class="tab-btn" data-category="hair" id="tab-hair">Hair Couture & Colorimetria</button>
+          <button type="button" class="tab-btn" data-category="estetica" id="tab-estetica">Estética Facial & Corporal</button>
+          <button type="button" class="tab-btn" data-category="nails" id="tab-nails">Nail Couture & Hand Spa</button>
+          <button type="button" class="tab-btn" data-category="bridal" id="tab-bridal">Maquiagem & Noivas</button>
+        </div>
+
+        <div class="services-menu-grid" id="services-menu-grid">
+          <!-- Renderizado via app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Online Booking Section + Evolution API Dispatch -->
+  <section class="section section-alt" id="agendamento">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">CONCIERGE DE AGENDAMENTO ONLINE</span>
+        <h2 class="section-title">Reserve seu horário com confirmação automática via WhatsApp</h2>
+        <p class="section-subtitle">
+          Ao confirmar abaixo, nosso servidor integrado à <strong>API Evolution (Looma)</strong> envia imediatamente o protocolo e os detalhes do seu agendamento para o seu WhatsApp.
+        </p>
+      </div>
+
+      <div class="booking-layout">
+        <div class="booking-wizard-card">
+          <div class="wizard-steps-indicator">
+            <div class="step-pill active">
+              <span class="step-num">1</span>
+              <span>Ritual & Especialista</span>
+            </div>
+            <div class="step-pill active">
+              <span class="step-num">2</span>
+              <span>Data & Horário</span>
+            </div>
+            <div class="step-pill active">
+              <span class="step-num">3</span>
+              <span>Seus Dados & WhatsApp</span>
+            </div>
+          </div>
+
+          <form id="booking-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="book-service">1. Experiência / Serviço *</label>
+                <select id="book-service" class="form-control" required></select>
+              </div>
+
+              <div class="form-group">
+                <label for="book-specialist">2. Especialista Valeronne *</label>
+                <select id="book-specialist" class="form-control" required></select>
+              </div>
+
+              <div class="form-group">
+                <label for="book-date">3. Data do Atendimento *</label>
+                <input type="date" id="book-date" class="form-control" required />
+              </div>
+
+              <div class="form-group">
+                <label> Horário Selecionado *</label>
+                <input type="text" id="book-time-selected" class="form-control" readonly placeholder="Clique em um horário abaixo" required />
+              </div>
+
+              <div class="form-group full">
+                <label>4. Horários Disponíveis na Agenda (<span id="slots-date-label"></span>)</label>
+                <div class="slots-grid" id="slots-grid"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="book-name">5. Seu Nome Completo *</label>
+                <input type="text" id="book-name" class="form-control" placeholder="Ex.: Carolina Albuquerque" required />
+              </div>
+
+              <div class="form-group">
+                <label for="book-phone">6. WhatsApp para Confirmação (com DDD) *</label>
+                <input type="tel" id="book-phone" class="form-control" placeholder="(11) 99999-9999" required />
+              </div>
+
+              <div class="form-group">
+                <label for="book-email">7. E-mail (Opcional)</label>
+                <input type="email" id="book-email" class="form-control" placeholder="carolina@email.com" />
+              </div>
+
+              <div class="form-group">
+                <label for="book-notes">8. Preferências / Observações de Visagismo</label>
+                <input type="text" id="book-notes" class="form-control" placeholder="Ex.: Desejo diagnóstico de mechas mel, café sem açúcar..." />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gold" id="btn-submit-booking" style="width: 100%; padding: 1.05rem;">
+              ✨ Confirmar Agendamento & Enviar no WhatsApp
+            </button>
+          </form>
+
+          <div id="booking-result-container" style="display: none;"></div>
+        </div>
+
+        <!-- Sticky Booking Summary Card -->
+        <aside class="booking-summary-card">
+          <h3 class="summary-title">Resumo da Reserva</h3>
+          <ul class="summary-list">
+            <li>
+              <span>Experiência:</span>
+              <strong id="sum-service">—</strong>
+            </li>
+            <li>
+              <span>Duração estimada:</span>
+              <strong id="sum-duration">—</strong>
+            </li>
+            <li>
+              <span>Especialista:</span>
+              <strong id="sum-specialist">—</strong>
+            </li>
+            <li>
+              <span>Data & Horário:</span>
+              <strong id="sum-datetime">—</strong>
+            </li>
+            <li>
+              <span>Ateliê:</span>
+              <strong>Valeronne Beleza e Estética</strong>
+            </li>
+          </ul>
+
+          <div class="summary-total">
+            <span>Investimento</span>
+            <strong id="sum-price">R$ 0</strong>
+          </div>
+
+          <div class="evolution-badge-box">
+            <strong>🤖 Automação Evolution API (Servidor Looma)</strong>
+            <p style="margin-top: 0.35rem; opacity: 0.9;">
+              Assim que você confirmar, a instância <code style="color:#fff;" id="sum-instance-name">valeronne</code> dispara o protocolo de reserva para o seu WhatsApp e habilita confirmação com 1 toque.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialists Section -->
+  <section class="section" id="especialistas">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-eyebrow">DIREÇÃO ARTÍSTICA & CLÍNICA</span>
+        <h2 class="section-title">Especialistas dedicadas à sua assinatura de beleza</h2>
+        <p class="section-subtitle">
+          Profissionais com formação internacional em visagismo, colorimetria avançada e estética regenerativa.
+        </p>
+      </div>
+
+      <div class="specialists-grid" id="specialists-grid">
+        <!-- Renderizado via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Evolution API WhatsApp Auto-Responder Section -->
+  <section class="section section-dark" id="automacao-looma">
+    <div class="container">
+      <div class="automation-grid">
+        <div>
+          <span class="section-eyebrow">INTEGRAÇÃO EVOLUTION API • SERVIDOR LOOMA</span>
+          <h2 class="section-title" style="color: #FAF7F2;">
+            Atendimento e Resposta Automática via WhatsApp 24h
+          </h2>
+          <p class="section-subtitle" style="margin-bottom: 1.5rem;">
+            Nosso backend está conectado nativamente à <strong>API Evolution do servidor Looma</strong>. Toda mensagem recebida no WhatsApp do salão aciona o webhook <code style="color:var(--gold-light);">POST /api/webhook/evolution</code>, identifica a intenção da cliente e responde automaticamente em segundos.
+          </p>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem; font-size: 0.9rem; color: #E5D3B8;">
+            <li>✦ <strong>Disparo Ativo no Agendamento:</strong> Envia confirmação imediata via <code style="color:#fff;">/message/sendText/{instance}</code> ao agendar pelo site.</li>
+            <li>✦ <strong>Consulta & Confirmação por WhatsApp:</strong> A cliente pode digitar <em>"3"</em>, <em>"Confirmar"</em> ou <em>"Cancelar"</em> e o sistema atualiza a agenda sozinho.</li>
+            <li>✦ <strong>Catálogo & Preços Automáticos:</strong> Responde dúvidas sobre valores de mechas, estética, manicure russa e Dia da Noiva.</li>
+            <li>✦ <strong>Subdomínio Cloudflare Pronto:</strong> Configurado para <code style="color:#fff;">valeronne.loomadev</code> com SSL/Proxy ativado.</li>
+          </ul>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-gold" id="btn-open-admin-from-section">
+              Configurar Credenciais Looma & Cloudflare
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Interactive WhatsApp Simulator -->
+        <div class="whatsapp-simulator">
+          <div class="wa-header">
+            <div class="wa-profile">
+              <div class="wa-avatar">
+                <img src="/assets/logos/icon-valeronne.svg" alt="V" />
+              </div>
+              <div>
+                <strong style="display:block; font-size:0.9rem; color:#FAF7F2;">Valeronne Beleza e Estética</strong>
+                <span style="font-size:0.74rem; color:#47B881;">● Concierge Evolution API (Looma) Online</span>
+              </div>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gold-light);">WEBHOOK LIVE</span>
+          </div>
+
+          <div class="wa-messages" id="wa-messages">
+            <div class="wa-bubble bot">✨ *Bem-vinda ao Valeronne Beleza e Estética*
+
+Olá! Sou a assistente exclusiva do Ateliê Valeronne via servidor Looma.
+Experimente clicar em um dos botões abaixo ou digite uma mensagem para testar a resposta automática:
+
+*1* — 📅 Agendar horário online agora
+*2* — ✨ Menu de Experiências & Valores
+*3* — 🔍 Consultar ou confirmar meu agendamento
+*4* — 📍 Endereço, Instagram e falar com Concierge</div>
+          </div>
+
+          <div class="wa-quick-prompts">
+            <button type="button" class="wa-chip" data-msg="1">1 • Quero agendar</button>
+            <button type="button" class="wa-chip" data-msg="2">2 • Valores e serviços</button>
+            <button type="button" class="wa-chip" data-msg="3">3 • Meu agendamento</button>
+            <button type="button" class="wa-chip" data-msg="Confirmar">Confirmar presença</button>
+            <button type="button" class="wa-chip" data-msg="4">4 • Endereço & Instagram</button>
+          </div>
+
+          <form class="wa-input-bar" id="wa-sim-form">
+            <input type="text" id="wa-sim-input" placeholder="Digite uma mensagem como cliente no WhatsApp..." required />
+            <button type="submit" class="btn btn-gold btn-sm" id="btn-wa-send">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <img src="/assets/logos/logo-name-valeronne.svg" alt="Valeronne Beleza e Estética" style="height: 64px; margin-bottom: 1rem;" />
+        <p style="font-size: 0.88rem; max-width: 380px;">
+          Valeronne Beleza e Estética — Ateliê de alta beleza, colorimetria sob medida, estética regenerativa e experiências sensoriais.
+        </p>
+      </div>
+      <div>
+        <h4 style="color: var(--gold-light); font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.75rem;">Contato & Ateliê</h4>
+        <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">📍 Alameda Gabriel Monteiro da Silva, 1480 — Jardins, SP</p>
+        <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">🕒 Terça a Sábado • 09h às 20h</p>
+        <p style="font-size: 0.85rem;">
+          📸 <a href="https://www.instagram.com/valeronnebelezaeestetica?srtk=Y2F5amJldjQwYWxi" target="_blank" rel="noopener" style="color: var(--gold-primary);">@valeronnebelezaeestetica</a>
+        </p>
+      </div>
+      <div>
+        <h4 style="color: var(--gold-light); font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.75rem;">Infraestrutura Looma</h4>
+        <p style="font-size: 0.84rem; margin-bottom: 0.4rem;">🌐 Domínio: <code style="color:#FAF7F2;">valeronne.loomadev</code></p>
+        <p style="font-size: 0.84rem; margin-bottom: 0.8rem;">⚡ WhatsApp: Evolution API v2 Auto-Responder</p>
+        <button type="button" class="btn btn-outline-light btn-sm" id="btn-footer-admin">
+          Abrir Painel de Integração
+        </button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Valeronne Beleza e Estética. Todos os direitos reservados.</span>
+      <span>Powered by Looma Server • Evolution API & Cloudflare Edge</span>
+    </div>
+  </footer>
+
+  <!-- Admin Modal: Agenda, Evolution API Looma & Cloudflare Subdomain -->
+  <div class="modal-backdrop" id="admin-modal-backdrop" aria-hidden="true">
+    <div class="admin-modal" role="dialog" aria-labelledby="admin-modal-title">
+      <div class="admin-modal-header">
+        <div>
+          <h3 id="admin-modal-title" style="font-family: var(--font-serif); font-size: 1.55rem; color: var(--gold-light);">
+            Concierge Admin • Servidor Looma & Cloudflare
+          </h3>
+          <span style="font-size: 0.78rem; color: var(--text-muted-dark);">
+            Gerencie agendamentos, Evolution API (WhatsApp Auto-Reply) e o subdomínio <code>valeronne.loomadev</code>
+          </span>
+        </div>
+        <button type="button" class="btn btn-outline-light btn-sm" id="btn-close-admin">Fechar ✕</button>
+      </div>
+
+      <div class="admin-tabs">
+        <button type="button" class="admin-tab-btn active" data-tab="tab-panel-bookings" id="adm-tab-bookings">
+          📅 Agendamentos (<span id="adm-bookings-count">0</span>)
+        </button>
+        <button type="button" class="admin-tab-btn" data-tab="tab-panel-evolution" id="adm-tab-evolution">
+          🤖 Evolution API (Servidor Looma)
+        </button>
+        <button type="button" class="admin-tab-btn" data-tab="tab-panel-cloudflare" id="adm-tab-cloudflare">
+          ☁️ Subdomínio Cloudflare (valeronne.loomadev)
+        </button>
+      </div>
+
+      <div class="admin-modal-body">
+        <!-- ABA 1: Agendamentos -->
+        <div class="admin-panel active" id="tab-panel-bookings">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <h4 style="font-family:var(--font-serif); font-size:1.35rem;">Reservas Registradas no Ateliê</h4>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-refresh-admin">Atualizar Lista</button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Protocolo</th>
+                  <th>Cliente & WhatsApp</th>
+                  <th>Experiência</th>
+                  <th>Especialista</th>
+                  <th>Data / Hora</th>
+                  <th>Status</th>
+                  <th>WhatsApp Evolution</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="admin-bookings-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ABA 2: Evolution API (Servidor Looma) -->
+        <div class="admin-panel" id="tab-panel-evolution">
+          <form id="form-evolution-settings">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="ev-base-url">URL da Evolution API no Servidor Looma *</label>
+                <input type="url" id="ev-base-url" class="form-control" placeholder="https://evolution.loomadev.com" required />
+              </div>
+              <div class="form-group">
+                <label for="ev-instance">Nome da Instância Evolution *</label>
+                <input type="text" id="ev-instance" class="form-control" placeholder="valeronne" required />
+              </div>
+              <div class="form-group">
+                <label for="ev-api-key">Global API Key / Instance Token (apikey) *</label>
+                <input type="text" id="ev-api-key" class="form-control" placeholder="Cole sua API Key da Evolution do servidor Looma" />
+              </div>
+              <div class="form-group">
+                <label for="ev-salon-phone">WhatsApp da Recepção (Recebe Alertas)</label>
+                <input type="text" id="ev-salon-phone" class="form-control" placeholder="5511998427100" />
+              </div>
+              <div class="form-group full">
+                <label>URL do Webhook para Resposta Automática (MESSAGES_UPSERT)</label>
+                <input type="text" id="ev-webhook-url" class="form-control" readonly value="https://valeronne.loomadev.com/api/webhook/evolution" />
+              </div>
+            </div>
+
+            <div style="display:flex; gap:0.85rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+              <button type="submit" class="btn btn-gold btn-sm" id="btn-save-evolution">
+                Salvar & Conectar Evolution API Looma
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" id="btn-register-webhook">
+                Registrar Webhook Automaticamente na Instância
+              </button>
+            </div>
+            <div id="ev-save-feedback" style="margin-bottom:1.25rem; font-size:0.86rem;"></div>
+          </form>
+
+          <h4 style="font-family:var(--font-serif); font-size:1.25rem; margin-bottom:0.75rem;">
+            Últimos Eventos & Respostas Automáticas WhatsApp
+          </h4>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Horário</th>
+                  <th>Cliente</th>
+                  <th>Mensagem / Gatilho</th>
+                  <th>Intenção</th>
+                  <th>Status Disparo</th>
+                </tr>
+              </thead>
+              <tbody id="admin-webhooks-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ABA 3: Cloudflare Subdomain (valeronne.loomadev) -->
+        <div class="admin-panel" id="tab-panel-cloudflare">
+          <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1.25rem;">
+            Crie ou atualize diretamente o subdomínio <strong><code>valeronne.loomadev</code></strong> na Cloudflare apontando para o IP ou CNAME do seu servidor Looma:
+          </p>
+
+          <form id="form-cloudflare-provision">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="cf-subdomain">Subdomínio *</label>
+                <input type="text" id="cf-subdomain" class="form-control" value="valeronne" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-root-domain">Domínio Principal no Cloudflare *</label>
+                <input type="text" id="cf-root-domain" class="form-control" placeholder="loomadev.com ou loomadev.com.br" value="loomadev.com" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-record-type">Tipo de Registro DNS *</label>
+                <select id="cf-record-type" class="form-control">
+                  <option value="A">A (Endereço IPv4 do Servidor Looma)</option>
+                  <option value="CNAME">CNAME (Domínio / Tunnel do Servidor Looma)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="cf-target">IP do Servidor Looma ou Destino CNAME *</label>
+                <input type="text" id="cf-target" class="form-control" placeholder="Ex.: 167.234.xx.xx ou looma.servidor.com" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-api-token">Cloudflare API Token (Permissão Zone:DNS:Edit) *</label>
+                <input type="password" id="cf-api-token" class="form-control" placeholder="Cole seu Token da API Cloudflare" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-zone-id">Cloudflare Zone ID (Opcional — Detectado Automaticamente)</label>
+                <input type="text" id="cf-zone-id" class="form-control" placeholder="Deixe em branco para busca automática" />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gold" id="btn-provision-cloudflare">
+              ☁️ Criar Subdomínio valeronne.loomadev no Cloudflare Agora
+            </button>
+          </form>
+
+          <div id="cf-provision-result" style="margin-top:1.25rem;"></div>
+
+          <div style="margin-top:1.75rem;">
+            <h4 style="font-family:var(--font-serif); font-size:1.25rem; margin-bottom:0.5rem;">
+              Deploy Instantâneo no Servidor Looma (Docker + Cloudflare)
+            </h4>
+            <pre class="code-block">git clone https://github.com/meusarquivos1225-tech/valeronne-atelie.git
+cd valeronne-atelie
+cp .env.example .env
+# Suba o container na porta 3000 (ou via Traefik/Nginx para valeronne.loomadev):
+docker compose up -d --build</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

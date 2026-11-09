@@ -1,0 +1,15 @@
+{
+  "name": "valeronne-atelie",
+  "version": "1.0.0",
+  "description": "Valeronne Beleza e Estética — Site Oficial, Agendamento Online & Resposta Automática via Evolution API (Servidor Looma) + Deploy Cloudflare (valeronne.loomadev)",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "cloudflare:setup": "node scripts/setup-cloudflare-cli.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
